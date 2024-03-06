@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for
 import cv2
-from tensorflow.keres.models import load_model
+from tensorflow.keras.models import load_model
 global vs
 from detect_mask_video import project
 
