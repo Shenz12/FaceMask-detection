@@ -28,7 +28,7 @@ INIT_LR = 1e-4
 EPOCHS = 20
 BS = 32
 #batchsize
-DIRECTORY = r"C:\Users\user\Documents\GitHub\FaceMask-detection\dataset"
+DIRECTORY = "C:/Users/user/Documents/GitHub/FaceMask-detection\dataset"
 CATEGORIES = ["with_mask", "without_mask"]
 
 # grab the list of images in our dataset directory, then initialize
