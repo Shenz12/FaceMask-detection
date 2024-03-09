@@ -1,4 +1,5 @@
-# import the necessary packages
+import cv2
+import numpy as np
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import load_model
@@ -7,9 +8,6 @@ import numpy as np
 import imutils
 import time
 import cv2
-import os
-# is designed to detect faces in an input frame using a face detection model (faceNet) and then 
-# predict whether each detected face is wearing a mask or not using a face mask detection model (maskNet).
 def detect_and_predict_mask(frame, faceNet, maskNet):
 	# grab the dimensions of the frame and then construct a blob
 	# from it.This blob is the input to the face detection network.
@@ -23,7 +21,6 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 	faceNet.setInput(blob)
 	#. This performs a forward pass through the network, obtaining predictions for the input blob.
 	detections = faceNet.forward()
-	print(detections.shape)
 
 	# initialize our list of faces, their corresponding locations,
 	# and the list of predictions from our face mask network
@@ -76,8 +73,8 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 	return (locs, preds)
 def project():
 	# load our serialized face detector model from disk
-	prototxtPath = "face_detector/deploy.prototxt"
-	weightsPath = "face_detector/res10_300x300_ssd_iter_140000.caffemodel"
+	prototxtPath = r"face_detector\deploy.prototxt"
+	weightsPath = r"face_detector\res10_300x300_ssd_iter_140000.caffemodel"
 	faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
 
 	# load the face mask detector model from disk
@@ -85,7 +82,7 @@ def project():
 
 	# initialize the video stream
 	print("[INFO] starting video stream...")
-	vs = VideoStream(src=0).start()
+	vs = VideoStream('http://192.168.15.144:4747/video').start()
 
 	# loop over the frames from the video stream
 	while True:
