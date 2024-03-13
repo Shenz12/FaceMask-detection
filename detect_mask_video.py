@@ -85,7 +85,7 @@ def project():
 
 	# initialize the video stream
 	print("[INFO] starting video stream...")
-	vs = VideoStream(src=0).start()
+	vs = VideoStream('http://192.168.137.27:4747/video').start()
 
 	# loop over the frames from the video stream
 	while True:
